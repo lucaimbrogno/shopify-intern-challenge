@@ -2,7 +2,7 @@
   "name": "the-shoppies",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://lucaimbrogno.github.io/shopify-intern-challenge",
+  "homepage": "https://lucaimbrogno.github.io/shopify-intern-challenge",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",

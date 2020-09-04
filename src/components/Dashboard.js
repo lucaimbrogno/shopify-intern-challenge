@@ -24,7 +24,7 @@ const Dashboard = () => {
   async function fetchData(searchQuery) {
     await fetch(
       `https://www.omdbapi.com/?s=${searchQuery}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`
-    ) // put into .env file
+    )
       .then((res) => res.json())
       .then((data) => {
         setResults({
