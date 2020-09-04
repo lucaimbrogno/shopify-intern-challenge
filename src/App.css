@@ -1,38 +1,113 @@
-.App {
+body {
   text-align: center;
+  background-color: #f4f2fa !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.dashboard {
+  margin: 100px 200px;
+  padding: 0px 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.title {
+  text-align: left;
+  padding: 12px 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.box {
+  background: white;
+  margin: 10px 5px;
+  padding-bottom: 10px;
+  border-radius: 3px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.search {
+  margin: 20px 10px;
+  border: none;
+  border-bottom: 1px solid lightgrey;
+  height: 40px;
+  font-size: 22px;
+}
+
+.search:focus {
+  outline: none;
+}
+
+.movie-list {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.App-link {
-  color: #61dafb;
+.list-item {
+  width: 33.33%;
+  text-align: center;
+  padding: 20px;
+  color: rgb(75, 75, 75);
+  border: 0.5px solid lightgrey;
+  margin: 0 !important;
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.movie-details {
+  margin-bottom: 40px;
+}
+
+.movie-poster {
+  margin-bottom: 10px;
+}
+.movie-poster > img {
+  width: 100%;
+}
+
+.movie-controls {
+  margin-top: 10px;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+}
+
+.list-item:hover {
+  transform: scale(1.03);
+  transition-duration: 0.3s;
+  border: none;
+}
+
+.banner {
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.banner-green {
+  background-color: rgb(146, 243, 146);
+}
+
+.banner-red {
+  background-color: rgb(255, 152, 152);
+}
+
+.controls-button {
+  background: white !important;
+  color: black !important;
+  border: 1px solid black !important;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.list-info {
+  margin: 10px;
+}
+
+@media (max-width: 767px) {
+  .list-item {
+    width: 50%;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (max-width: 500px) {
+  .list-item {
+    width: 100%;
   }
 }
