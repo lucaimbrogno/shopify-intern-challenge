@@ -2,13 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 
-const Nominations = ({ nominations, deleteItem }) => (
-  <div className="box">
+const Nominations = ({ nominations, deleteNomination, clearNominations }) => (
+  <div className="box title-box">
     <h4 className="title">Your Nominations </h4>
+    {nominations.length > 0 && (
+      <Button onClick={clearNominations}>Clear Nominations</Button>
+    )}
     {nominations.length >= 5 && (
       <div className="banner banner-green">{`You have ${nominations.length} nominations!`}</div>
     )}
-
     <div className="movie-list">
       {nominations?.map((movie) => (
         <div key={movie.imdbID} className="list-item">
@@ -23,7 +25,7 @@ const Nominations = ({ nominations, deleteItem }) => (
           <div className="movie-controls">
             <Button
               className="controls-button"
-              onClick={() => deleteItem(movie)}
+              onClick={() => deleteNomination(movie)}
             >
               Delete
             </Button>
@@ -36,7 +38,8 @@ const Nominations = ({ nominations, deleteItem }) => (
 
 Nominations.propTypes = {
   nominations: PropTypes.array,
-  nominateItem: PropTypes.func,
+  deleteNomination: PropTypes.func,
+  clearNominations: PropTypes.func,
 };
 
 export default Nominations;

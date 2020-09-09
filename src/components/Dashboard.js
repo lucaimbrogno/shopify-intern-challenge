@@ -17,21 +17,25 @@ const Dashboard = () => {
     resultsCount: 0,
     searchError: "",
     searchQuery: "",
+    page: 1,
   });
 
   const [isSearchLoading, setIsSearchLoading] = useState(false);
 
-  async function fetchData(searchQuery) {
+  async function fetchData(loadMore, searchQuery, page) {
     await fetch(
-      `https://www.omdbapi.com/?s=${searchQuery}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`
+      `https://www.omdbapi.com/?s=${searchQuery}&page=${page}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`
     )
       .then((res) => res.json())
       .then((data) => {
         setResults({
-          movies: data["Search"],
+          movies: loadMore
+            ? data["Search"] && [...results.movies, ...data["Search"]]
+            : data["Search"],
           resultsCount: data["totalResults"],
           searchError: data["Error"],
           searchQuery: searchQuery,
+          page: page,
         });
       })
       .catch((error) => setResults({ searchError: error }));
@@ -47,7 +51,7 @@ const Dashboard = () => {
     // search after user has stopped typing query for 1s
     searchTimer = setTimeout(async () => {
       try {
-        await fetchData(e.target.value);
+        await fetchData(false, e.target.value, 1);
         setIsSearchLoading(false);
       } catch (error) {
         setResults({ searchError: error });
@@ -59,8 +63,22 @@ const Dashboard = () => {
     setNominations([...nominations, movie]);
   };
 
-  const deleteItem = (movie) => {
+  const deleteNomination = (movie) => {
     setNominations(nominations.filter((item) => item !== movie));
+  };
+
+  const clearNominations = () => {
+    setNominations([]);
+  };
+
+  const loadMoreResults = async () => {
+    try {
+      const nextPage = results.page + 1;
+      await fetchData(true, results.searchQuery, nextPage);
+    } catch (error) {
+      setResults({ searchError: error });
+      console.log(error);
+    }
   };
 
   return (
@@ -82,11 +100,16 @@ const Dashboard = () => {
             nominations={nominations}
             results={results}
             handleNomination={handleNomination}
+            loadMoreResults={loadMoreResults}
           />
         </Col>
 
         <Col>
-          <Nominations nominations={nominations} deleteItem={deleteItem} />
+          <Nominations
+            nominations={nominations}
+            deleteNomination={deleteNomination}
+            clearNominations={clearNominations}
+          />
         </Col>
       </Row>
     </Container>

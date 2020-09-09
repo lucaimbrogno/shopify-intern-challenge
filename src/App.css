@@ -21,6 +21,24 @@ body {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
+.title-box {
+  padding: 10px;
+  align-items: center;
+  position: relative;
+}
+
+.title-box > button {
+  background: rgb(252, 44, 44);
+  color: black;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.title-box > button:hover {
+  background: rgb(252, 92, 92);
+  color: black;
+}
 .search {
   margin: 20px 10px;
   border: none;
@@ -98,6 +116,11 @@ body {
 
 .list-info {
   margin: 10px;
+}
+
+.load-more {
+  margin: 10px;
+  text-align: center;
 }
 
 @media (max-width: 767px) {
